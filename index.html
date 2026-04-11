@@ -6,15 +6,16 @@
   <title>아름[♡] 갠방 시그 목록</title>
   <style>
     :root{
-      --bg1:#f6f7fb;
-      --bg2:#eef1f7;
+      /* 핑크 테마 변수 */
+      --bg1:#fff5f7;
+      --bg2:#ffe4e9;
       --card:#ffffff;
-      --line:#e6e8ef;
-      --text:#141823;
-      --muted:#5a6475;
-      --accent:#111827;
-      --accent2:#6b7280;
-      --shadow: 0 14px 40px rgba(15, 23, 42, 0.10);
+      --line:#ffd1dc;
+      --text:#4a353a;
+      --muted:#8e747a;
+      --accent:#ff6b9d; /* 메인 핑크 */
+      --accent2:#ffb3c6;
+      --shadow: 0 14px 40px rgba(255, 107, 157, 0.15);
       --radius: 18px;
     }
 
@@ -23,8 +24,9 @@
       margin:0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Pretendard, "Noto Sans KR", sans-serif;
       color: var(--text);
-      background: radial-gradient(1200px 600px at 20% -10%, var(--bg2), transparent 60%),
-                  radial-gradient(900px 500px at 110% 10%, #f1f5ff, transparent 55%),
+      /* 핑크빛 그라데이션 배경 */
+      background: radial-gradient(1200px 600px at 20% -10%, #fff0f3, transparent 60%),
+                  radial-gradient(900px 500px at 110% 10%, #ffe5ec, transparent 55%),
                   linear-gradient(180deg, var(--bg1), #ffffff);
       padding: 48px 16px;
     }
@@ -44,7 +46,7 @@
 
     .header{
       padding: 22px 22px 14px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 2px solid var(--bg2);
       display: grid;
       gap: 12px;
     }
@@ -60,7 +62,7 @@
       height: auto;
       display:block;
       border-radius: 12px;
-      border: 1px solid var(--line);
+      border: 2px solid var(--accent2);
       background: #fff;
     }
 
@@ -70,6 +72,7 @@
       letter-spacing: -0.3px;
       color: var(--accent);
       line-height: 1.25;
+      text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
     }
 
     .sub{
@@ -97,13 +100,13 @@
       outline: none;
       font-size: 14px;
       color: var(--text);
-      background: #fbfcff;
+      background: #fffafd;
       transition: 0.15s ease;
     }
 
     .search input:focus{
-      border-color: rgba(17, 24, 39, 0.35);
-      box-shadow: 0 0 0 5px rgba(17, 24, 39, 0.06);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 5px rgba(255, 107, 157, 0.1);
       background: #fff;
     }
 
@@ -114,7 +117,7 @@
       transform: translateY(-50%);
       width: 18px;
       height: 18px;
-      color: var(--accent2);
+      color: var(--accent);
       pointer-events:none;
     }
 
@@ -157,47 +160,45 @@
       position: sticky;
       top: 0;
       z-index: 2;
-      background: linear-gradient(180deg, #f8fafc, #f3f4f6);
-      color: #111827;
+      background: linear-gradient(180deg, #fff5f8, #ffe4eb);
+      color: var(--accent);
       text-align: left;
       padding: 12px 12px;
       border-bottom: 1px solid var(--line);
       font-weight: 700;
-      letter-spacing: -0.2px;
     }
 
     tbody td{
       padding: 10px 12px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--bg1);
       color: var(--text);
       background: #fff;
     }
 
     tbody tr:nth-child(even) td{
-      background: #fbfcff;
+      background: #fffafb;
     }
 
     tbody tr:hover td{
-      background: #f5f7ff;
+      background: #fff0f3;
     }
 
     td.num{
       width: 120px;
-      color: #111827;
+      color: var(--accent);
+      font-weight: 600;
       font-variant-numeric: tabular-nums;
-      white-space: nowrap;
     }
 
     .footer{
       padding: 14px 22px;
       border-top: 1px solid var(--line);
-      background: #fcfdff;
+      background: #fffafd;
       color: var(--muted);
       font-size: 12.5px;
       display:flex;
       justify-content: space-between;
       gap: 10px;
-      flex-wrap: wrap;
     }
 
     .badge{
@@ -206,25 +207,25 @@
       gap:8px;
       padding: 8px 10px;
       border-radius: 999px;
-      background: #f3f4f6;
+      background: #fff0f3;
       border: 1px solid var(--line);
-      color: #111827;
+      color: var(--accent);
       font-size: 12.5px;
+      font-weight: 600;
     }
 
+    /* 스크롤바도 핑크색으로 */
     .table-scroll::-webkit-scrollbar{ width: 10px; height: 10px; }
     .table-scroll::-webkit-scrollbar-thumb{
-      background: rgba(17, 24, 39, 0.18);
+      background: var(--accent2);
       border-radius: 999px;
       border: 2px solid #fff;
     }
     .table-scroll::-webkit-scrollbar-track{ background: #fff; }
 
     @media (max-width: 520px){
-      .brand{ gap: 10px; }
       .brand img{ width: 96px; }
       td.num{ width: 96px; }
-      .table-scroll{ max-height: 460px; }
     }
   </style>
 </head>
@@ -235,8 +236,8 @@
         <div class="brand">
           <img src="https://profile.img.sooplive.co.kr/LOGO/ah/ahrum0912/ahrum0912.jpg" alt="사이트 로고" />
           <div>
-            <h1>아름[♡] 갠방 시그 목록</h1>
-            <p class="sub">번호 또는 제목으로 검색할 수 있습니다.</p>
+            <h1>아름[♡] 핑크 시그 목록 🌸</h1>
+            <p class="sub">러블리한 핑크 테마로 업데이트 되었습니다.</p>
           </div>
         </div>
 
@@ -246,13 +247,7 @@
               <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="1.8"/>
               <path d="M16.2 16.2 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
             </svg>
-            <input
-              type="text"
-              id="searchInput"
-              placeholder="번호 또는 제목으로 검색 (예: 100 또는 Need You)"
-              aria-label="번호 또는 제목으로 검색"
-              autocomplete="off"
-            />
+            <input type="text" id="searchInput" placeholder="번호 또는 제목 검색..." autocomplete="off" />
           </div>
         </div>
       </div>
@@ -260,7 +255,7 @@
       <div class="content">
         <div class="meta">
           <span id="countText" class="badge">총 0개의 곡</span>
-          <span>Tip: 숫자 일부(예: 10) 또는 제목 일부로도 검색됩니다.</span>
+          <span>Tip: 🆕 표시가 된 곡은 최신 곡입니다!</span>
         </div>
 
         <div class="table-wrap">
@@ -557,11 +552,11 @@
                 <tr><td class="num">10272</td><td>SUPERMGAS</td></tr>
                 <tr><td class="num">20000</td><td>VVIP</td></tr>
                 <tr><td class="num">30000</td><td>GOD</td></tr>
-                <tr><td class="num">1072</td><td>멍지인 (열혈)</td></tr>
-                <tr><td class="num">1086</td><td>A9886 (열혈)</td></tr>
-                <tr><td class="num">1296</td><td>지공주 (열혈)</td></tr>
-                <tr><td class="num">1919</td><td>흑우나그네 (열혈)</td></tr>
-                <tr><td class="num">2929</td><td>큰 흑우나그네🆕 (열혈)</td></tr>
+                <tr><td class="num">1072</td><td>멍지인 (열혈) 💖</td></tr>
+                <tr><td class="num">1086</td><td>A9886 (열혈) 💖</td></tr>
+                <tr><td class="num">1296</td><td>지공주 (열혈) 💖</td></tr>
+                <tr><td class="num">1919</td><td>흑우나그네 (열혈) 💖</td></tr>
+                <tr><td class="num">2929</td><td>큰 흑우나그네🆕 (열혈) 💖</td></tr>
               </tbody>
             </table>
           </div>
@@ -569,7 +564,8 @@
       </div>
 
       <div class="footer">
-        <span>© 아름[♡]</span>
+        <span>© 아름[♡] 🎀</span>
+        <span>Always Lovely Stream</span>
       </div>
     </div>
   </div>
@@ -582,7 +578,7 @@
 
     function setCount(total, visible, keyword) {
       if (!keyword) {
-        countText.textContent = `총 ${total}개의 곡`;
+        countText.textContent = `총 ${total}개의 시그`;
       } else {
         countText.textContent = `검색 결과 ${visible}개 / 총 ${total}개`;
       }
