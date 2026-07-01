@@ -342,7 +342,7 @@
                 <tr><td class="num">157</td><td class="num">3666</td><td>언니귀여워</td></tr>
                 <tr><td class="num">158</td><td class="num">3674</td><td>오빠달려붕붕</td></tr>
                 <tr><td class="num">159</td><td class="num">3777</td><td>잭슨</td></tr>
-                <tr><td class="num">160</td><td class="num">1600</td><td>REDRED</td></tr>
+                <tr><td class="num">160</td><td class="num">1600</td><td>REDRED🆕</td></tr>
                 <tr><td class="num">161</td><td class="num">4777</td><td>방망이 드라군</td></tr>
                 <tr><td class="num">162</td><td class="num">4828</td><td>홈스윗홈</td></tr>
                 <tr><td class="num">163</td><td class="num">1015</td><td>벌룬인럽</td></tr>
@@ -457,6 +457,7 @@
                 <tr><td class="num">1070</td><td class="num">10070</td><td>A-잘해</td></tr>
                 <tr><td class="num">1071</td><td class="num">10071</td><td>봉지원</td></tr>
                 <tr><td class="num">1073</td><td class="num">10073</td><td>김복덩V</td></tr>
+                <!-- 요청하신 아키마 예시 반영! -->
                 <tr><td class="num">1074</td><td class="num">10074</td><td>아키마</td></tr>
                 <tr><td class="num">1075</td><td class="num">10075</td><td>커멘취소보성</td></tr>
                 <tr><td class="num">1077</td><td class="num">10077</td><td>A-염보갑갑</td></tr>
@@ -558,7 +559,7 @@
                 <tr><td class="num">1072</td><td class="num">10072</td><td>멍지인 (열혈) 💖</td></tr>
                 <tr><td class="num">1086</td><td class="num empty">-</td><td>A9886 (열혈) 💖</td></tr>
                 <tr><td class="num">1296</td><td class="num empty">-</td><td>지공주 (열혈) 💖</td></tr>
-                <tr><td class="num">1919</td><td class="num">10091</td><td>흑우나그네 (열혈) 💖</td></tr>
+                <tr><td class="num">1919</td><td class="num empty">-</td><td>흑우나그네 (열혈) 💖</td></tr>
                 <tr><td class="num">2929</td><td class="num empty">-</td><td>큰 흑우나그네🆕 (열혈) 💖</td></tr>
               </tbody>
             </table>
@@ -579,6 +580,31 @@
     const rows = table.getElementsByTagName('tr');
     const countText = document.getElementById('countText');
 
+    // 초성 검색 지원
+    const CHOSUNG = ['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+
+    function getChosung(str) {
+      return [...str].map(ch => {
+        const code = ch.charCodeAt(0);
+        if (code >= 0xAC00 && code <= 0xD7A3) {
+          return CHOSUNG[Math.floor((code - 0xAC00) / 588)];
+        }
+        return ch;
+      }).join('');
+    }
+
+    function isOnlyJamo(str) {
+      return [...str].every(ch => ch >= 'ㄱ' && ch <= 'ㅎ');
+    }
+
+    function matches(text, keyword) {
+      if (text.includes(keyword)) return true;
+      if (keyword.length > 0 && isOnlyJamo(keyword)) {
+        return getChosung(text).includes(keyword);
+      }
+      return false;
+    }
+
     function setCount(total, visible, keyword) {
       if (!keyword) {
         countText.textContent = `총 ${total}개의 시그`;
@@ -592,18 +618,17 @@
       let visibleCount = 0;
 
       for (let i = 1; i < rows.length; i++) {
-        const genbangCell = rows[i].cells[0]; // 갠방
-        const excelCell = rows[i].cells[1];   // 엑셀
-        const titleCell = rows[i].cells[2];   // 제목
-        
+        const genbangCell = rows[i].cells[0];
+        const excelCell = rows[i].cells[1];
+        const titleCell = rows[i].cells[2];
+
         if (!genbangCell || !excelCell || !titleCell) continue;
 
         const genbang = genbangCell.textContent.toLowerCase();
         const excel = excelCell.textContent.toLowerCase();
         const title = titleCell.textContent.toLowerCase();
 
-        // 갠방 번호, 엑셀 번호, 제목 중 하나라도 포함되면 표시
-        if (keyword === '' || genbang.includes(keyword) || excel.includes(keyword) || title.includes(keyword)) {
+        if (keyword === '' || matches(genbang, keyword) || matches(excel, keyword) || matches(title, keyword)) {
           rows[i].style.display = '';
           visibleCount++;
         } else {
@@ -611,7 +636,7 @@
         }
       }
 
-      const total = rows.length - 1; // 헤더 1줄 제외
+      const total = rows.length - 1;
       setCount(total, visibleCount, keyword);
     }
 
